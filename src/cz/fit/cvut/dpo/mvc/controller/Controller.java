@@ -18,7 +18,7 @@ import java.util.List;
  * @author honza
  */
 public class Controller {
-    private List<IView> views=new ArrayList<>();
+    private IView view;
     private IModel model;
     
     public Controller( IModel model) {        
@@ -26,9 +26,7 @@ public class Controller {
     }
     
     public void notifyAllViews() {
-        for (IView view : views) {
             view.notifyView();
-        }
     }
     
     public AbstractShape getAbstractShapeById(int id) {
@@ -43,6 +41,6 @@ public class Controller {
     } 
     
     public void addView(IView view){
-        views.add(view);
+        this.view=view;
     }
 }

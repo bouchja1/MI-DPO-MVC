@@ -18,13 +18,17 @@ import javax.swing.JFrame;
 public class ViewFacade implements IView{
     private JFrame frame;
     private CanvasView canvas;
+    private TableView table;
 
     public ViewFacade(FacadeController controller, IModel model) {
         this.canvas=new CanvasView(controller,model); 
+        this.table = new TableView(controller, model);
+        
         frame = new JFrame();
         frame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         LayoutManager layout = new FlowLayout(FlowLayout.CENTER);
         frame.getContentPane().setLayout(layout);
+        frame.add(table);
         frame.add(canvas);
     }
     
@@ -54,6 +58,7 @@ public class ViewFacade implements IView{
     @Override
     public void notifyView() {
         canvas.notifyView();
+        table.notifyView();
     }
     
 }

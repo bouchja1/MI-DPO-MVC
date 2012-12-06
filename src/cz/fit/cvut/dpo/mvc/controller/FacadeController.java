@@ -18,12 +18,12 @@ import cz.fit.cvut.dpo.mvc.view.IView;
 public class FacadeController implements IShapeController {
     private CircleController circleCtrl;
     private SquareController squareCtrl;
-    private Controller ctrl;
+    private Controller controller;
 
     public FacadeController(IModel model) {
         this.circleCtrl = new CircleController(model);
         this.squareCtrl = new SquareController(model);
-        this.ctrl = new Controller(model);
+        this.controller = new Controller(model);
     }       
 
     @Override
@@ -36,10 +36,11 @@ public class FacadeController implements IShapeController {
     }
     
      public void addView(IView view){
-        ctrl.addView(view);
+        controller.addView(view);
     }
     
     public void createShape(EnumShape enumShape, Position position) {
-        ctrl.createShape(enumShape, position);
+        controller.createShape(enumShape, position);
+        controller.notifyAllViews();
     } 
 }

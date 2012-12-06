@@ -23,7 +23,8 @@ public abstract class AbstractView extends javax.swing.JPanel implements IView {
     public AbstractView(FacadeController controller, IModel model) {       
         this.controller = controller;
         this.model=model;       
-        allShapes = model.getAllShapes(); 
+        allShapes = model.getAllShapes();   
     }
+
      
 }
