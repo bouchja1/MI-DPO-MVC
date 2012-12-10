@@ -41,7 +41,8 @@ public abstract class AbstractMyTableModel extends AbstractTableModel{
 
     @Override
     public void fireTableCellUpdated(int row, int column) {
-        super.fireTableCellUpdated(row, column);System.out.println("Zmenilo se:" +row + " " + column);
+        super.fireTableCellUpdated(row, column);
+        System.out.println("Zmenilo se:" +row + " " + column);
     }
     
     
@@ -82,6 +83,20 @@ public abstract class AbstractMyTableModel extends AbstractTableModel{
         fireTableCellUpdated(rowIndex, columnIndex);
     }
     
+    Position setPosition(AbstractShape shape, int columnIndex, int intValue){
+        Position pos = null;
+        switch(columnIndex){
+            case 1:
+                pos = new Position(intValue, shape.getPosition().y);                
+                controller.changePosition(shape, pos);
+                break;
+            case 2:
+                pos = new Position( shape.getPosition().x, intValue);
+                controller.changePosition(shape, pos);
+                break;
+        }
+        return pos;
+    }
     int getShapeId(int rowIndex){
         return Integer.parseInt(getValueAt(rowIndex, 0).toString());
     }

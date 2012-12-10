@@ -53,19 +53,14 @@ public class CircleTableModel extends AbstractMyTableModel{
 
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-         super.setValueAt(aValue, rowIndex, columnIndex);
+        super.setValueAt(aValue, rowIndex, columnIndex);
         Position pos;
         Circle shape = (Circle)controller.getAbstractShapeById(getShapeId(rowIndex));
         int intValue = Integer.valueOf(aValue.toString());
         switch(columnIndex){
             case 1:
-                pos = new Position(intValue, tableList.get(rowIndex).getPosition().y);                
-                controller.changePosition(shape, pos);
-                tableList.get(rowIndex).setPosition(pos);
-                break;
             case 2:
-                pos = new Position( tableList.get(rowIndex).getPosition().x, intValue);
-                controller.changePosition(shape, pos);
+                pos = setPosition(shape, columnIndex, intValue);
                 tableList.get(rowIndex).setPosition(pos);
                 break;
             case 3:    

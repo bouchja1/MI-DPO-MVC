@@ -61,13 +61,8 @@ public class SquareTableModel extends AbstractMyTableModel{
         int intValue = Integer.valueOf(aValue.toString());
         switch(columnIndex){
             case 1:
-                pos = new Position(intValue, tableList.get(rowIndex).getPosition().y);                
-                controller.changePosition(shape, pos);
-                tableList.get(rowIndex).setPosition(pos);
-                break;
             case 2:
-                pos = new Position( tableList.get(rowIndex).getPosition().x, intValue);
-                controller.changePosition(shape, pos);
+                pos = setPosition(shape, columnIndex, intValue);
                 tableList.get(rowIndex).setPosition(pos);
                 break;
             case 3:    
