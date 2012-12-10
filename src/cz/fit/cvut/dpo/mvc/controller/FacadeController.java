@@ -27,12 +27,13 @@ public class FacadeController implements IShapeController {
     }       
 
     @Override
-    public void changePosition(AbstractShape shape, Position position) {
-        
+    public void changePosition(AbstractShape shape, Position position) {        
+        controller.notifyAllViews();
     }
 
     @Override
-    public void changeSize(AbstractShape shape, int size) throws ClassCastException {        
+    public void changeSize(AbstractShape shape, int size) throws ClassCastException {            
+        controller.notifyAllViews();
     }
     
      public void addView(IView view){
@@ -43,4 +44,8 @@ public class FacadeController implements IShapeController {
         controller.createShape(enumShape, position);
         controller.notifyAllViews();
     } 
+
+    public AbstractShape getAbstractShapeById(int id) {
+        return controller.getAbstractShapeById(id);
+    }
 }

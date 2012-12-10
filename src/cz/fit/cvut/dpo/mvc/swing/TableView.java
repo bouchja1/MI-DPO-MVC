@@ -20,8 +20,8 @@ public class TableView extends AbstractView  {
 
     public TableView(FacadeController controller, IModel model) {
         super(controller, model);
-        circleTableModel = new CircleTableModel(model.getAllShapes(), EnumShape.CIRCLE);
-        squareTableModel = new SquareTableModel(model.getAllShapes(), EnumShape.SQUARE);
+        circleTableModel = new CircleTableModel(controller, model.getAllShapes(), EnumShape.CIRCLE);
+        squareTableModel = new SquareTableModel(controller, model.getAllShapes(), EnumShape.SQUARE);
         initComponents();
     }
     

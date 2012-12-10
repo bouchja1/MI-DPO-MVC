@@ -5,6 +5,7 @@
 package cz.fit.cvut.dpo.mvc.swing;
 
 import cz.fit.cvut.dpo.mvc.command.EnumShape;
+import cz.fit.cvut.dpo.mvc.controller.FacadeController;
 import cz.fit.cvut.dpo.mvc.objects.AbstractShape;
 import cz.fit.cvut.dpo.mvc.objects.Circle;
 import cz.fit.cvut.dpo.mvc.objects.Position;
@@ -19,8 +20,8 @@ import java.util.List;
 public class SquareTableModel extends AbstractMyTableModel{
     private List<Square> tableList;
 
-    public SquareTableModel(List<AbstractShape> shapeList, EnumShape enumShape) {
-        super(shapeList, enumShape);
+    public SquareTableModel(FacadeController controller, List<AbstractShape> shapeList, EnumShape enumShape) {
+        super(controller, shapeList, enumShape);
         initTableList(enumShape);        
         this.columnNames = new String[] {"id", "x", "y", "side"};
     }
@@ -53,15 +54,25 @@ public class SquareTableModel extends AbstractMyTableModel{
 
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+        
+        super.setValueAt(aValue, rowIndex, columnIndex);
+        Position pos;
+        Square shape = (Square)controller.getAbstractShapeById(getShapeId(rowIndex));
+        int intValue = Integer.valueOf(aValue.toString());
         switch(columnIndex){
             case 1:
-                tableList.get(rowIndex).setPosition(new Position((Integer) aValue, tableList.get(rowIndex).getPosition().y));
+                pos = new Position(intValue, tableList.get(rowIndex).getPosition().y);                
+                controller.changePosition(shape, pos);
+                tableList.get(rowIndex).setPosition(pos);
                 break;
             case 2:
-                tableList.get(rowIndex).setPosition(new Position( tableList.get(rowIndex).getPosition().x, (Integer) aValue));
+                pos = new Position( tableList.get(rowIndex).getPosition().x, intValue);
+                controller.changePosition(shape, pos);
+                tableList.get(rowIndex).setPosition(pos);
                 break;
             case 3:    
-                tableList.get(rowIndex).setSide((Integer)aValue);
+                controller.changeSize(shape, intValue);
+                tableList.get(rowIndex).setSide(intValue);
                 break;
                 //return tableList.get(rowIndex).ge
         }

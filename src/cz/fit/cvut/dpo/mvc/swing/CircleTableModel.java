@@ -5,6 +5,7 @@
 package cz.fit.cvut.dpo.mvc.swing;
 
 import cz.fit.cvut.dpo.mvc.command.EnumShape;
+import cz.fit.cvut.dpo.mvc.controller.FacadeController;
 import cz.fit.cvut.dpo.mvc.objects.AbstractShape;
 import cz.fit.cvut.dpo.mvc.objects.Circle;
 import cz.fit.cvut.dpo.mvc.objects.Position;
@@ -18,8 +19,8 @@ import java.util.List;
 public class CircleTableModel extends AbstractMyTableModel{
     private List<Circle> tableList;
 
-    public CircleTableModel(List<AbstractShape> shapeList, EnumShape enumShape) {
-        super(shapeList, enumShape);
+    public CircleTableModel(FacadeController controller, List<AbstractShape> shapeList, EnumShape enumShape) {
+        super(controller, shapeList, enumShape);
         initTableList(enumShape);
         this.columnNames = new String[] {"id", "x", "y", "radius"};
     }
@@ -52,18 +53,28 @@ public class CircleTableModel extends AbstractMyTableModel{
 
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+         super.setValueAt(aValue, rowIndex, columnIndex);
+        Position pos;
+        Circle shape = (Circle)controller.getAbstractShapeById(getShapeId(rowIndex));
+        int intValue = Integer.valueOf(aValue.toString());
         switch(columnIndex){
             case 1:
-                tableList.get(rowIndex).setPosition(new Position(Integer.parseInt(aValue.toString()), tableList.get(rowIndex).getPosition().y));
+                pos = new Position(intValue, tableList.get(rowIndex).getPosition().y);                
+                controller.changePosition(shape, pos);
+                tableList.get(rowIndex).setPosition(pos);
                 break;
             case 2:
-                tableList.get(rowIndex).setPosition(new Position( tableList.get(rowIndex).getPosition().x, Integer.parseInt(aValue.toString())));
+                pos = new Position( tableList.get(rowIndex).getPosition().x, intValue);
+                controller.changePosition(shape, pos);
+                tableList.get(rowIndex).setPosition(pos);
                 break;
             case 3:    
-                tableList.get(rowIndex).setRadius(Integer.parseInt(aValue.toString()));
+                controller.changeSize(shape, intValue);
+                tableList.get(rowIndex).setRadius(intValue);
                 break;
                 //return tableList.get(rowIndex).ge
         }
+        
     }
      @Override
     public int getRowCount() {

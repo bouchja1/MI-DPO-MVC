@@ -5,6 +5,7 @@
 package cz.fit.cvut.dpo.mvc.swing;
 
 import cz.fit.cvut.dpo.mvc.command.EnumShape;
+import cz.fit.cvut.dpo.mvc.controller.FacadeController;
 import cz.fit.cvut.dpo.mvc.objects.AbstractShape;
 import cz.fit.cvut.dpo.mvc.objects.Position;
 import java.util.ArrayList;
@@ -22,19 +23,28 @@ public abstract class AbstractMyTableModel extends AbstractTableModel{
     List<AbstractShape> shapeList;
     String columnNames[];
     EnumShape enumShape;
+    FacadeController controller;
+            
 
-    public AbstractMyTableModel(List<AbstractShape> shapeList, EnumShape enumShape) {          
+    public AbstractMyTableModel(FacadeController controller, List<AbstractShape> shapeList, EnumShape enumShape) {          
         super();
         this.shapeList = shapeList;  
         this.enumShape = enumShape;
+        this.controller = controller;
     }
 
     @Override
     public void fireTableDataChanged() {
         initTableList(enumShape);
-        super.fireTableDataChanged();
-        
+        super.fireTableDataChanged();        
+    }    
+
+    @Override
+    public void fireTableCellUpdated(int row, int column) {
+        super.fireTableCellUpdated(row, column);System.out.println("Zmenilo se:" +row + " " + column);
     }
+    
+    
     
     
     protected abstract void initTableList(EnumShape enumShape);
@@ -63,6 +73,22 @@ public abstract class AbstractMyTableModel extends AbstractTableModel{
         return columnNames[columnIndex];
          
      }
+    
+ 
+
+    @Override
+    public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+        
+        fireTableCellUpdated(rowIndex, columnIndex);
+    }
+    
+    int getShapeId(int rowIndex){
+        return Integer.parseInt(getValueAt(rowIndex, 0).toString());
+    }
+    
+    
+    
+    
 
    
     
