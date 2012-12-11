@@ -23,6 +23,5 @@ public class Main {
         IView view= new ViewFacade(facade, model);
         facade.addView(view);
         view.show();
-    }
-    
+    }    
 }

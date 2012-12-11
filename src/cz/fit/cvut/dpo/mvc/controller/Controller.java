@@ -26,31 +26,37 @@ public class Controller implements IController {
         this.model = model;
     }
     
+    @Override
     public void notifyAllViews() {
             view.notifyView();
     }
     
+    @Override
     public AbstractShape getAbstractShapeById(int id) {
       return model.getShapeById(id);
     }
     
     
+    @Override
     public void createShape(EnumShape enumShape, Position position) {
         System.out.println("controller create shape");
         model.executeCommand(new CreateShapeCommand(model, enumShape, position));
         notifyAllViews();
     } 
     
+    @Override
     public void clearAll(){
         model.executeCommand(new ClearCommand(model));
         notifyAllViews();
     }
     
+    @Override
     public void editShape(AbstractShape shape){
         model.executeCommand(new EditCommand(model, shape));
         notifyAllViews();
     }
     
+    @Override
     public void addView(IView view){
         this.view=view;
     }
