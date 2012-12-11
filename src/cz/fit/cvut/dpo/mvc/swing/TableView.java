@@ -1,7 +1,7 @@
 package cz.fit.cvut.dpo.mvc.swing;
 
 import cz.fit.cvut.dpo.mvc.command.EnumShape;
-import cz.fit.cvut.dpo.mvc.controller.FacadeController;
+import cz.fit.cvut.dpo.mvc.controller.Controller;
 import cz.fit.cvut.dpo.mvc.model.IModel;
 import cz.fit.cvut.dpo.mvc.view.AbstractView;
 
@@ -18,7 +18,7 @@ public class TableView extends AbstractView  {
     CircleTableModel circleTableModel;
     SquareTableModel squareTableModel;
 
-    public TableView(FacadeController controller, IModel model) {
+    public TableView(Controller controller, IModel model) {
         super(controller, model);
         circleTableModel = new CircleTableModel(controller, model.getAllShapes(), EnumShape.CIRCLE);
         squareTableModel = new SquareTableModel(controller, model.getAllShapes(), EnumShape.SQUARE);

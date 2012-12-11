@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package main;
+package cz.fit.cvut.dpo.mvc.main;
 
-import cz.fit.cvut.dpo.mvc.controller.FacadeController;
+import cz.fit.cvut.dpo.mvc.controller.Controller;
 import cz.fit.cvut.dpo.mvc.model.IModel;
 import cz.fit.cvut.dpo.mvc.model.Model;
 
@@ -16,20 +16,13 @@ import cz.fit.cvut.dpo.mvc.view.IView;
  *
  * @author honza
  */
-public class Main {
-    
+public class Main {    
     public static void main(String[] args) {
-        IModel model = new Model();        
-        
-        FacadeController facade = new FacadeController(model);  
-        
+        IModel model = new Model();      
+        Controller facade = new Controller(model); 
         IView view= new ViewFacade(facade, model);
-        
         facade.addView(view);
-        
         view.show();
-        
-        
     }
     
 }

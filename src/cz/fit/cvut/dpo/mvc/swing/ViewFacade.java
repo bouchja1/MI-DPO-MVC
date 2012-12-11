@@ -4,7 +4,7 @@
  */
 package cz.fit.cvut.dpo.mvc.swing;
 
-import cz.fit.cvut.dpo.mvc.controller.FacadeController;
+import cz.fit.cvut.dpo.mvc.controller.Controller;
 import cz.fit.cvut.dpo.mvc.model.IModel;
 import cz.fit.cvut.dpo.mvc.view.IView;
 import java.awt.FlowLayout;
@@ -20,7 +20,7 @@ public class ViewFacade implements IView{
     private CanvasView canvas;
     private TableView table;
 
-    public ViewFacade(FacadeController controller, IModel model) {
+    public ViewFacade(Controller controller, IModel model) {
         this.canvas=new CanvasView(controller,model); 
         this.table = new TableView(controller, model);
         

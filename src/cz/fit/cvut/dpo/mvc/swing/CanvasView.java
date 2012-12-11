@@ -1,7 +1,7 @@
 package cz.fit.cvut.dpo.mvc.swing;
 
 import cz.fit.cvut.dpo.mvc.command.EnumShape;
-import cz.fit.cvut.dpo.mvc.controller.FacadeController;
+import cz.fit.cvut.dpo.mvc.controller.Controller;
 import cz.fit.cvut.dpo.mvc.model.IModel;
 import cz.fit.cvut.dpo.mvc.objects.AbstractShape;
 import cz.fit.cvut.dpo.mvc.objects.Circle;
@@ -28,7 +28,7 @@ import java.util.Random;
  */
 public class CanvasView extends AbstractView {
 
-    public CanvasView(FacadeController controller, IModel model) {
+    public CanvasView(Controller controller, IModel model) {
         super(controller, model);
         initComponents();
     }

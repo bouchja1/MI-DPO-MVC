@@ -5,7 +5,7 @@
 package cz.fit.cvut.dpo.mvc.swing;
 
 import cz.fit.cvut.dpo.mvc.command.EnumShape;
-import cz.fit.cvut.dpo.mvc.controller.FacadeController;
+import cz.fit.cvut.dpo.mvc.controller.Controller;
 import cz.fit.cvut.dpo.mvc.objects.AbstractShape;
 import cz.fit.cvut.dpo.mvc.objects.Position;
 import java.util.List;
@@ -20,10 +20,10 @@ public abstract class AbstractMyTableModel<T extends AbstractShape> extends Abst
     List<AbstractShape> shapeList;
     String columnNames[];
     EnumShape enumShape;
-    FacadeController controller;
+    Controller controller;
     List<T> tableList;
 
-    public AbstractMyTableModel(FacadeController controller, List<AbstractShape> shapeList, EnumShape enumShape) {
+    public AbstractMyTableModel(Controller controller, List<AbstractShape> shapeList, EnumShape enumShape) {
         super();
         this.shapeList = shapeList;
         this.enumShape = enumShape;

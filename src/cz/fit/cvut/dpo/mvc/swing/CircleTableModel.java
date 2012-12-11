@@ -5,7 +5,7 @@
 package cz.fit.cvut.dpo.mvc.swing;
 
 import cz.fit.cvut.dpo.mvc.command.EnumShape;
-import cz.fit.cvut.dpo.mvc.controller.FacadeController;
+import cz.fit.cvut.dpo.mvc.controller.Controller;
 import cz.fit.cvut.dpo.mvc.objects.AbstractShape;
 import cz.fit.cvut.dpo.mvc.objects.Circle;
 import cz.fit.cvut.dpo.mvc.objects.Position;
@@ -19,7 +19,7 @@ import java.util.List;
 public class CircleTableModel extends AbstractMyTableModel<Circle>{
     //private List<Circle> tableList;
 
-    public CircleTableModel(FacadeController controller, List<AbstractShape> shapeList, EnumShape enumShape) {
+    public CircleTableModel(Controller controller, List<AbstractShape> shapeList, EnumShape enumShape) {
         super(controller, shapeList, enumShape);
         initTableList(enumShape);
         this.columnNames = new String[] {"id", "x", "y", "radius"};

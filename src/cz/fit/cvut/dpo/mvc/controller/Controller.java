@@ -12,15 +12,14 @@ import cz.fit.cvut.dpo.mvc.model.IModel;
 import cz.fit.cvut.dpo.mvc.objects.AbstractShape;
 import cz.fit.cvut.dpo.mvc.objects.Position;
 import cz.fit.cvut.dpo.mvc.view.IView;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
  * @author honza
  */
-public class Controller {
-    private IView view;
+public class Controller implements IController {
+
+       private IView view;
     private IModel model;
     
     public Controller( IModel model) {        
@@ -55,4 +54,5 @@ public class Controller {
     public void addView(IView view){
         this.view=view;
     }
+    
 }
