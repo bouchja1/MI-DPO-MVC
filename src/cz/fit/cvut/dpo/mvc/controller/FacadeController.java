@@ -42,10 +42,18 @@ public class FacadeController implements IShapeController {
     
     public void createShape(EnumShape enumShape, Position position) {
         controller.createShape(enumShape, position);
-        controller.notifyAllViews();
     } 
+    
+    public void clearAll(){
+        controller.clearAll();
+    }
+    
+    public void editShape(AbstractShape shape){
+        controller.editShape(shape);
+    }
 
     public AbstractShape getAbstractShapeById(int id) {
         return controller.getAbstractShapeById(id);
     }
+    
 }

@@ -4,7 +4,9 @@
  */
 package cz.fit.cvut.dpo.mvc.controller;
 
+import cz.fit.cvut.dpo.mvc.command.ClearCommand;
 import cz.fit.cvut.dpo.mvc.command.CreateShapeCommand;
+import cz.fit.cvut.dpo.mvc.command.EditCommand;
 import cz.fit.cvut.dpo.mvc.command.EnumShape;
 import cz.fit.cvut.dpo.mvc.model.IModel;
 import cz.fit.cvut.dpo.mvc.objects.AbstractShape;
@@ -39,6 +41,16 @@ public class Controller {
         model.executeCommand(new CreateShapeCommand(model, enumShape, position));
         notifyAllViews();
     } 
+    
+    public void clearAll(){
+        model.executeCommand(new ClearCommand(model));
+        notifyAllViews();
+    }
+    
+    public void editShape(AbstractShape shape){
+        model.executeCommand(new EditCommand(model, shape));
+        notifyAllViews();
+    }
     
     public void addView(IView view){
         this.view=view;

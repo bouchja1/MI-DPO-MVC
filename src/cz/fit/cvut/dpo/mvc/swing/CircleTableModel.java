@@ -16,8 +16,8 @@ import java.util.List;
  *
  * @author Adam
  */
-public class CircleTableModel extends AbstractMyTableModel{
-    private List<Circle> tableList;
+public class CircleTableModel extends AbstractMyTableModel<Circle>{
+    //private List<Circle> tableList;
 
     public CircleTableModel(FacadeController controller, List<AbstractShape> shapeList, EnumShape enumShape) {
         super(controller, shapeList, enumShape);
@@ -54,20 +54,11 @@ public class CircleTableModel extends AbstractMyTableModel{
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
         super.setValueAt(aValue, rowIndex, columnIndex);
-        Position pos;
         Circle shape = (Circle)controller.getAbstractShapeById(getShapeId(rowIndex));
         int intValue = Integer.valueOf(aValue.toString());
-        switch(columnIndex){
-            case 1:
-            case 2:
-                pos = setPosition(shape, columnIndex, intValue);
-                tableList.get(rowIndex).setPosition(pos);
-                break;
-            case 3:    
-                controller.changeSize(shape, intValue);
+        if(columnIndex == 3)  {
+                controller.editShape(shape);
                 tableList.get(rowIndex).setRadius(intValue);
-                break;
-                //return tableList.get(rowIndex).ge
         }
         
     }

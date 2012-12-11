@@ -21,4 +21,6 @@ public interface IModel {
     public AbstractShape getShapeById(int id);
     
     public void executeCommand(ICommand com);
+    
+    public void editShape(AbstractShape shape);
 }

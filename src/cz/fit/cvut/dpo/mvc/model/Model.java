@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Model implements IModel {
     
-    private static int id = 0;
+    private int id = 0;
     private List<AbstractShape> shapeList;
 
     public Model() {
@@ -36,6 +36,8 @@ public class Model implements IModel {
     @Override
     public void clearAllShapes() {
         shapeList.clear();
+        id = 0;
+        
     }
 
     @Override
@@ -46,6 +48,13 @@ public class Model implements IModel {
     @Override
     public void executeCommand(ICommand com) {
         com.execute();
+    }
+
+    @Override
+    public void editShape(AbstractShape shape) {
+        shapeList.remove(shape.getId());
+        shapeList.add(shape.getId(), shape);
+        
     }
 
     
